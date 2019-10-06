@@ -15,8 +15,8 @@ const authRoutes = require('./routes/auth');
 
 //db
 mongoose
-	.connect(process.env.DATABASE_LOCAL, {
-		//Change Database from either CLOUD or LOCAL depending on environment.
+	.connect(process.env.DATABASE_CLOUD, {
+		//Change Database to either CLOUD or LOCAL depending on environment.
 		useNewUrlParser: true,
 		useCreateIndex: true,
 		useFindAndModify: false
