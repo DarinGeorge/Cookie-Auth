@@ -1,13 +1,11 @@
-import Base from '../../components/Layout/Base';
-import Link from 'next/link';
+import Base from '../../components/layout/Base';
+import SignUp from '../../components/auth/SignUp';
 
 const Signup = () => {
 	return (
 		<Base>
 			<h2>Sign Up Page</h2>
-			<Link href='/'>
-				<a>Home</a>
-			</Link>
+			<SignUp />
 		</Base>
 	);
 };

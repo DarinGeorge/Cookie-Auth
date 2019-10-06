@@ -1,4 +1,4 @@
-import Base from '../components/Layout/Base';
+import Base from '../components/layout/Base';
 import Link from 'next/link';
 
 const Index = () => {
