@@ -59,3 +59,14 @@ exports.login = (req, res) => {
 		});
 	});
 };
+
+exports.logout = (req, res) => {
+	res.clearCookie('token');
+	res.json({
+		message: 'Log out successful.'
+	});
+};
+
+exports.requireLogin = expressJwt({
+	secret: process.env.JWT_SECRET_KEY
+});
