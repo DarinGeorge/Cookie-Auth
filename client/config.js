@@ -2,6 +2,6 @@ import getConfig from 'next/config';
 const { publicRuntimeConfig } = getConfig();
 
 export const API = publicRuntimeConfig.PRODUCTION
-	? 'https://ecommerce.com'
-	: 'http://localhost:8000';
+	? publicRuntimeConfig.API_PRODUCTION
+	: publicRuntimeConfig.API_DEV;
 export const APP_NAME = publicRuntimeConfig.APP_NAME;

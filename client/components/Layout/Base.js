@@ -4,8 +4,7 @@ const Base = ({ children }) => {
 	return (
 		<>
 			<Header />
-			{children}
-			<p>Footer</p>
+			<div className='container-fluid'>{children}</div>
 		</>
 	);
 };
