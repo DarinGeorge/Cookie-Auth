@@ -1,4 +1,4 @@
-const { check } = requestAnimationFrame('express-validator');
+const { check } = require('express-validator');
 
 exports.userSignupValidator = [
 	check('name')
