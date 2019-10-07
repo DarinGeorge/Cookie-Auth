@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { APP_NAME } from '../../../config';
+import { actionLogOut, isAuth } from '../../../actions/auth';
 import Link from 'next/link';
 import {
 	Collapse,
@@ -14,6 +15,7 @@ import {
 	DropdownMenu,
 	DropdownItem
 } from 'reactstrap';
+import Router from 'next/router';
 
 const Header = () => {
 	const [isOpen, setIsOpen] = useState(false);
@@ -29,31 +31,51 @@ const Header = () => {
 				<NavbarToggler onClick={toggle} />
 				<Collapse isOpen={isOpen} navbar>
 					<Nav className='ml-auto' navbar>
-						<NavItem>
-							<Link href='/auth/login'>
-								<NavLink>Log In</NavLink>
-							</Link>
-						</NavItem>
-						<NavItem>
-							<Link href='/auth/signup'>
-								<NavLink>Sign Up</NavLink>
-							</Link>
-						</NavItem>
-
-						<UncontrolledDropdown nav inNavbar>
-							<DropdownToggle nav caret>
-								Options
-							</DropdownToggle>
-							<DropdownMenu right>
-								<DropdownItem>Option 1</DropdownItem>
-								<DropdownItem>Option 2</DropdownItem>
-								<DropdownItem divider />
-								<DropdownItem>Reset</DropdownItem>
-							</DropdownMenu>
-						</UncontrolledDropdown>
+						{!isAuth() && (
+							<>
+								<NavItem>
+									<Link href='/auth/login'>
+										<NavLink>Log In</NavLink>
+									</Link>
+								</NavItem>
+								<NavItem>
+									<Link href='/auth/signup'>
+										<NavLink>Sign Up</NavLink>
+									</Link>
+								</NavItem>
+							</>
+						)}
+						{isAuth() && (
+							<UncontrolledDropdown nav inNavbar>
+								<DropdownToggle nav caret>
+									Options
+								</DropdownToggle>
+								<DropdownMenu right>
+									<DropdownItem>Option 1</DropdownItem>
+									<DropdownItem>Option 2</DropdownItem>
+									<DropdownItem divider />
+									<DropdownItem>
+										<NavLink
+											style={{ cursor: 'pointer' }}
+											onClick={() =>
+												actionLogOut(() => Router.replace(`/auth/login`))
+											}
+										>
+											Log Out
+										</NavLink>
+									</DropdownItem>
+								</DropdownMenu>
+							</UncontrolledDropdown>
+						)}
 					</Nav>
 				</Collapse>
 			</Navbar>
+
+			<style jsx>{`
+				a {
+					cursor: pointer;
+				}
+			`}</style>
 		</div>
 	);
 };

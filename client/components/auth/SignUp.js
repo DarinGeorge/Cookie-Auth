@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { actionSignUp } from '../../actions/auth';
-
+import Router from 'next/router';
 const SignUp = () => {
 	const [values, setValues] = useState({
 		name: '',
